@@ -1,0 +1,2 @@
+export BOT_TOKEN=NjA2OTYwMjg4NDkwODQ4MzM2.Gfkmtg.HXOWugWozjh1aqMFGJ4522oGiQtrmU3tRLsYQk
+python3 main.py
