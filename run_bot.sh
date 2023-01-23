@@ -1,2 +1,2 @@
-export BOT_TOKEN=NjA2OTYwMjg4NDkwODQ4MzM2.Gfkmtg.HXOWugWozjh1aqMFGJ4522oGiQtrmU3tRLsYQk
+export BOT_TOKEN=
 python3 main.py
