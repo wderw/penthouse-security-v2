@@ -26,7 +26,7 @@ class RollGameContext:
 class RollGameView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
-    @discord.ui.button(label="Roll")
+    @discord.ui.button(label="Roll", style=discord.ButtonStyle.primary, emoji="🎲" )
     async def roll(self, interaction: discord.Interaction, button: discord.ui.Button):
         if (bot.rollgamectx.in_progress == False):
             print("debug: game already in progress returning...")
