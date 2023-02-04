@@ -29,18 +29,23 @@ class RollGameView(discord.ui.View):
     @discord.ui.button(label="Roll")
     async def roll(self, interaction: discord.Interaction, button: discord.ui.Button):
         if (bot.rollgamectx.in_progress == False):
+            print("debug: game already in progress returning...")
             return
 
         player = interaction.user.name
+        print(f"debug: Player {player} tries to roll ...")
         # check if already played
-        if (len([play for play in bot.rollgamectx.plays if player in play]) > 0):
-            print(f"Player {player} has already played.")
-            await interaction.response.send_message("Juz zagrales matole xD", ephemeral=True)
-            return
+
+        for registered_player,score in bot.rollgamectx.plays:
+            if registered_player == player:
+                print(f"debug: Player {player} has already played.")
+                await interaction.response.send_message("Juz zagrales matole xD", ephemeral=True)
+                return
 
         rollvalue = random.randint(1, 100)
+        print(f"{player} rolled {rollvalue}")
         bot.rollgamectx.plays.append((player, rollvalue))
-        print("plays: ")
+        print("debug: current plays register: ")
         print(bot.rollgamectx.plays)
 
         bot.rollgamectx.embed.add_field(name=f":game_die: {interaction.user.name} rolled {rollvalue}", value="", inline=False)
