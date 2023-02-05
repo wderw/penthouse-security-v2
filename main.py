@@ -83,6 +83,23 @@ async def on_ready():
 
 # slash commands
 
+@bot.tree.command(name="czy", description="Zadaj ważkie pytanie")
+async def czy(interaction: discord.Interaction, pytanie: str):
+    answers = ["Tak", "Nie", "taknie", "nietak... nie", "Może tak, może nie a może chuj cie wie",
+    "Kaseta maszyny losujacej jest pusta... zwolnienie blokady i chuj porozsypywalo sie",
+    "Jakbym ja takie rzeczy wiedzial to byloby zajebiscie", "No ta",
+    "Na stuweczke", "Lepiej zeby tak bylo", "Swiat takich rzeczy nie widzial", "7 % że nie",
+    "9 % że tak", "25 % że nie możliwe że nie", "Możliwe", "Niemożliwe", "Prawdopodobnie huj to strzeli",
+    "Gowno byles chuj widziales i w dupie sie znasz", "Gowno znasz chuj byles i w dupie widziales",
+    "W dupie sie znasz, gowno widziales i chuj byles", "Taaaakkowoż że nie xD", "NyET cuKa",
+    "Nie ma takich rzezy w tym jebanym swiecie", "Tak by wychodzilo", "Tak by wychodzilo ze nie",
+    "Aaa stul pysk", "Szansa na to jest niezerowa", "teraz sie tego przewidziec nie da",
+    "odpowiedz jest whuj rozmyta, sproboj ponownie", "Pewno", "Napewno"]
+    answer = random.choice(answers)
+    embed=discord.Embed(title=f"Czy {pytanie}", color=0x6733ff)
+    embed.add_field(name="", value=f':crystal_ball: {answer}', inline=True)
+    await interaction.response.send_message(embed=embed)
+
 @bot.tree.command(name="roll", description="Roll a dice (1-100)")
 async def roll(interaction: discord.Interaction):
     value = random.randint(1, 100)
@@ -130,8 +147,8 @@ async def sync(ctx: commands.Context, where_to=None):
         await ctx.send('You must specify global or guild sync!')
 
 @bot.command()
-async def roll(interaction: discord.Interaction):
+async def roll(ctx: commands.Context):
     value = random.randint(1, 100)
-    await interaction.response.send_message(f"{interaction.user.display_name} rolled: **{value}**")
+    await ctx.send(f"{ctx.author.display_name} rolled: **{value}**")
 
 bot.run(token)
