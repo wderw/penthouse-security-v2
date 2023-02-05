@@ -76,6 +76,8 @@ if token == None:
 
 bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 bot.rollgamectx = RollGameContext()
+bot.startup_time = datetime.datetime.now()
+print(f"marking startup time: {bot.startup_time}")
 
 @bot.event
 async def on_ready():
@@ -104,6 +106,12 @@ async def czy(interaction: discord.Interaction, pytanie: str):
 async def roll(interaction: discord.Interaction):
     value = random.randint(1, 100)
     await interaction.response.send_message(f"{interaction.user.display_name} rolled: **{value}**")
+
+@bot.tree.command(name="uptime", description="Check bot uptime")
+async def uptime(interaction: discord.Interaction):
+    now = datetime.datetime.now()
+    delta = now - bot.startup_time
+    await interaction.response.send_message(f"Uptime: **{delta}**.")
 
 @bot.tree.command(name="reset", description="resets the roll game")
 async def reset(interaction: discord.Interaction):
