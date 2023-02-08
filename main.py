@@ -5,6 +5,7 @@ import time
 import platform
 import datetime
 import random
+import asyncio
 
 # user classes
 
@@ -82,6 +83,34 @@ print(f"marking startup time: {bot.startup_time}")
 @bot.event
 async def on_ready():
     print(f"We have logged in as {bot.user}")
+    channel = get_okragly_stul()
+    if channel == None:
+        print("Error: Can't find okragly_stul")
+        return
+    print(f"Found okragly_stul's id: {channel.id}")
+    await papa_timer(channel)
+
+def get_okragly_stul():
+    channels = bot.get_all_channels()
+    for channel in channels:
+        if channel.name == "okragly_stul":
+            return channel
+    return None
+
+async def papa_timer(channel):
+    papa_emoji_id = get_emoji_id_by_name(channel, "jp2")
+    while True:
+        now = datetime.datetime.now()
+        if now.hour == 21 and now.minute == 37:
+            await channel.send(f"<:jp2:{papa_emoji_id}>")
+            await asyncio.sleep(70)
+        await asyncio.sleep(20)
+
+def get_emoji_id_by_name(channel, name):
+    emojis = channel.guild.emojis
+    for emoji in emojis:
+        if emoji.name == name:
+            return emoji.id
 
 # slash commands
 
@@ -91,12 +120,14 @@ async def czy(interaction: discord.Interaction, pytanie: str):
     "Kaseta maszyny losujacej jest pusta... zwolnienie blokady i chuj porozsypywalo sie",
     "Jakbym ja takie rzeczy wiedzial to byloby zajebiscie", "No ta",
     "Na stuweczke", "Lepiej zeby tak bylo", "Swiat takich rzeczy nie widzial", "7 % że nie",
-    "9 % że tak", "25 % że nie możliwe że nie", "Możliwe", "Niemożliwe", "Prawdopodobnie huj to strzeli",
+    "9 % że tak", "25 % że niemożliwe że nie", "Możliwe", "Niemożliwe", "Prawdopodobnie huj to strzeli",
     "Gowno byles chuj widziales i w dupie sie znasz", "Gowno znasz chuj byles i w dupie widziales",
     "W dupie sie znasz, gowno widziales i chuj byles", "Taaaakkowoż że nie xD", "NyET cuKa",
     "Nie ma takich rzezy w tym jebanym swiecie", "Tak by wychodzilo", "Tak by wychodzilo ze nie",
     "Aaa stul pysk", "Szansa na to jest niezerowa", "teraz sie tego przewidziec nie da",
-    "odpowiedz jest whuj rozmyta, sproboj ponownie", "Pewno", "Napewno"]
+    "odpowiedz jest whuj rozmyta, sproboj ponownie", "Pewno", "Napewno",
+    "Konsultuje z ChatGPT... Mowi ze predzej sie planety w huja uloza",
+    "Konsultuje z ChatGPT...    Ta... No ta... ok dzieki. Mowi ze pytanie idiotyczne"]
     answer = random.choice(answers)
     embed=discord.Embed(title=f"Czy {pytanie}", color=0x6733ff)
     embed.add_field(name="", value=f':crystal_ball: {answer}', inline=True)
