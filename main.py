@@ -127,7 +127,10 @@ async def czy(interaction: discord.Interaction, pytanie: str):
     "Aaa stul pysk", "Szansa na to jest niezerowa", "teraz sie tego przewidziec nie da",
     "odpowiedz jest whuj rozmyta, sproboj ponownie", "Pewno", "Napewno",
     "Konsultuje z ChatGPT... Mowi ze predzej sie planety w huja uloza",
-    "Konsultuje z ChatGPT...    Ta... No ta... ok dzieki. Mowi ze pytanie idiotyczne"]
+    "Konsultuje z ChatGPT...    Ta... No ta... ok dzieki. Mowi ze pytanie idiotyczne",
+    "Zgoogluj se cwaniaczku", "Sluchaj no kolego takie pytania to wiesz... no",
+    "wiem ale nie powiem hehe", "gźdiba dumbidibaj apszz",
+    "tymbarka se otworz i moze ci zakretka odpowie bo ja na pewno nie. zjebie."]
     answer = random.choice(answers)
     embed=discord.Embed(title=f"Czy {pytanie}", color=0x6733ff)
     embed.add_field(name="", value=f':crystal_ball: {answer}', inline=True)
