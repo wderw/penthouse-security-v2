@@ -103,7 +103,7 @@ async def papa_timer(channel):
         now = datetime.datetime.now()
         if now.hour == 21 and now.minute == 37:
             await channel.send(f"<:jp2:{papa_emoji_id}>")
-            await asyncio.sleep(70)
+            await asyncio.sleep(3600)
         await asyncio.sleep(20)
 
 def get_emoji_id_by_name(channel, name):
