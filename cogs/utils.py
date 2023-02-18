@@ -6,6 +6,7 @@ import datetime
 class Utils(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+        self.icon = "⚙️"
 
     @commands.command()
     async def sync(self, ctx: commands.Context, where_to: str):

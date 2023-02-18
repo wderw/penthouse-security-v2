@@ -11,7 +11,7 @@ if token == None:
 class PenthouseSecurity(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix=commands.when_mentioned_or('!'), intents=discord.Intents.all())
-        self.cogslist = ["cogs.utils", "cogs.rollgame", "cogs._8ball"]
+        self.cogslist = ["cogs.utils","cogs.help", "cogs.rollgame", "cogs._8ball"]
 
     async def setup_hook(self):
         for cog in self.cogslist:

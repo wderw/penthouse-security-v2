@@ -6,6 +6,7 @@ import random
 class _8Ball(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+        self.icon = "🔮"
 
     @app_commands.command(name="czy", description="Zadaj ważkie pytanie")
     async def czy(self, interaction: discord.Interaction, pytanie: str):

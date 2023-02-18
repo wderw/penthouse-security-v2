@@ -7,6 +7,7 @@ import random
 class Rollgame(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+        self.icon = "🎲"
         self.rollgamectx = RollGameContext()
     
     @app_commands.command(name="reset", description="resets the roll game")
@@ -24,7 +25,7 @@ class Rollgame(commands.Cog):
         else:
             await interaction.response.send_message(f"Zaczekejże {interaction.user.display_name} zjebie, gierka already in progress.")
 
-    @app_commands.command(name="roll", description="Roll a dice (1-100)")
+    @app_commands.command(name="roll", description="Roll dice (1-100)")
     async def roll(self, interaction: discord.Interaction):
         value = random.randint(1, 100)
         await interaction.response.send_message(f"{interaction.user.display_name} rolled: **{value}**")        
