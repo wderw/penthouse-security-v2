@@ -1,2 +1,5 @@
 venv/
 run_bot.sh
+*.pyc
+*.pyo
+
